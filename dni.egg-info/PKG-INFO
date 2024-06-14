@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: dni
+Version: 0.1
+Summary: Descripción de tu proyecto
+Home-page: https://tu.url.del.proyecto
+Author: Tu Nombre
+Author-email: https://github.com/IvanciniGT/dniUtilsPython.git
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# dni
+
+Este módulo se encarga de validar un DNI.
+
+## Ejemplo de uso
+
+```python
+from dni import DNI
+
+dni = DNI("12345678T")
+print(dni.valido) # True
+print(dni.numero) # 12345678
+print(dni.letra) # T
+print(dni.confianza) # 1
+```
+
+## Empaquetar con
+
+```bash
+pip install setuptools wheel
+python setup.py sdist bdist_wheel
+```
+
