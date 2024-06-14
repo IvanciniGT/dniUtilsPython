@@ -1,3 +1,3 @@
-from .dni import DNI
+from dni import DNI
 
 __all__ = ['DNI']
