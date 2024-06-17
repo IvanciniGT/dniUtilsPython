@@ -61,3 +61,6 @@ class DNI:
 
     def pretratamiento_de_dni(self,dni_como_texto):
         return dni_como_texto.strip()
+    
+    def otra_funcion(self, loquesea):
+        print(loquesea)
