@@ -1,0 +1,35 @@
+trigger:
+- main
+
+resources:
+  containers:
+    - container: python
+      image: python:3.8-slim
+
+container: python
+
+steps:
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    chmod +x src/distrib.sh
+    chmod +x src/run-test.sh
+  displayName: 'Make scripts executable'
+
+- script: ./src/run-test.sh
+  displayName: 'Run Tests'
+
+- script: ./src/distrib.sh
+  displayName: 'Build Distribution'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), contains(variables['Build.SourceBranchName'], 'refs/tags/'))
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), contains(variables['Build.SourceBranchName'], 'refs/tags/'))
