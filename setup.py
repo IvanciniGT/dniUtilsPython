@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="dni",
     version="0.3",
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     install_requires=[
         # Lista de dependencias si es necesario
     ],
