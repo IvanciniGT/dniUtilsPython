@@ -15,14 +15,14 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    chmod +x src/distrib.sh
-    chmod +x src/run-test.sh
+    chmod +x distrib.sh
+    chmod +x run-test.sh
   displayName: 'Make scripts executable'
 
-- script: ./src/run-test.sh
+- script: ./run-test.sh
   displayName: 'Run Tests'
 
-- script: ./src/distrib.sh
+- script: ./distrib.sh
   displayName: 'Build Distribution'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), contains(variables['Build.SourceBranchName'], 'refs/tags/'))
 
@@ -33,3 +33,4 @@ steps:
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), contains(variables['Build.SourceBranchName'], 'refs/tags/'))
+# Podríamos reemplazar esta tarea, por el despliegue de la librería en el cluster de PRODUCCION / DEV
